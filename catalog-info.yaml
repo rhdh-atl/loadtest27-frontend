@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: loadtest27-poi-map-app-dev
+  annotations:
+    argocd/app-name: loadtest27-poi-map-app-dev
+    backstage.io/kubernetes-id: loadtest27-poi-map-app
+    backstage.io/kubernetes-namespace: loadtest27
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-atl/loadtest27-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/dev-pipelines/ns/loadtest27/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/k8s/ns/loadtest27/deployments/loadtest27-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.j0i9yf30.eastus2.aroapp.io/#https://github.com/rhdh-atl/loadtest27-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://loadtest27-poi-map-app-loadtest27.apps.j0i9yf30.eastus2.aroapp.io
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/loadtest27"
+  system: workshop-system-loadtest27
+  consumesApis:
+    - gateway-api-loadtest27
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-loadtest27
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/loadtest27"
